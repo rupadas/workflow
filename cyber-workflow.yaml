@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: cyber-
+spec:
+  entrypoint: cyber-trivy-example
+  templates:
+  - name: cyber-trivy-example
+    steps:
+    - - name: generate
+        template: gen-repo-list
+    - - name: trivy-check
+        template: trivy-single
+        arguments:
+          parameters:
+          - name: repo
+            value: "{{item}}"
+        withParam: "{{steps.generate.outputs.result}}"
+
+  - name: gen-repo-list
+    script:
+      image: python:alpine3.6
+      command: [python]
+      source: |
+        import json
+        import sys
+        repo_list = str("https://github.com/knqyf263/trivy-ci-test,https://github.com/rupadas/cyber,https://github.com/rupadas/native-json-editor").split(",")
+        json.dump([i for i in repo_list], sys.stdout)
+  
+  - name: trivy-single
+    inputs:
+      parameters:
+      - name: repo
+    container:
+      image: aquasec/trivy:latest
+      command: [trivy, repo]
+      args: ["{{inputs.parameters.repo}}"]
