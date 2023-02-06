@@ -23,7 +23,7 @@ kubectl patch deployment \
   "--auth-mode=server"
 ]}]'
 ```
-For Argo deploying
+For Argo port fowrward to check dashboard at localhost:2746
 ```
 kubectl -n argo port-forward deployment/argo-server 2746:2746
 ```
@@ -37,7 +37,7 @@ Submitting the argo task and watch is for tracking the flow
 argo submit -n argo --watch cyber-workflow.yaml
 ```
 
-![local](https://i.ibb.co/23Xrtvv/Screenshot-2023-02-06-at-10-38-31-PM.png)
+[![H1mkRrQ.md.png](https://iili.io/H1mkRrQ.md.png)](https://freeimage.host/i/H1mkRrQ)
 
-![argo dashborad](https://i.ibb.co/h70SZc4/Screenshot-2023-02-06-at-10-45-09-PM.png)
+[![H1mk72V.md.png](https://iili.io/H1mk72V.md.png)](https://freeimage.host/i/H1mk72V)
 
