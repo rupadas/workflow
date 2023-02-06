@@ -26,6 +26,7 @@ kubectl patch deployment \
 For Argo deploying
 ```
 kubectl -n argo port-forward deployment/argo-server 2746:2746
+```
 
 To resolve access error while deploying
 ```
