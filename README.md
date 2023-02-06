@@ -37,7 +37,6 @@ Submitting the argo task and watch is for tracking the flow
 argo submit -n argo --watch cyber-workflow.yaml
 ```
 
-[![H1mkRrQ.md.png](https://iili.io/H1mkRrQ.md.png)](https://freeimage.host/i/H1mkRrQ)
-
-[![H1mk72V.md.png](https://iili.io/H1mk72V.md.png)](https://freeimage.host/i/H1mk72V)
+[![H1p3RYx.md.png](https://iili.io/H1p3RYx.md.png)](https://freeimage.host/i/H1p3RYx)
+[![H1p3A2j.md.png](https://iili.io/H1p3A2j.md.png)](https://freeimage.host/i/H1p3A2j)
 
