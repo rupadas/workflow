@@ -24,8 +24,8 @@ spec:
       source: |
         import json
         import sys
-        repo_list = str("https://github.com/knqyf263/trivy-ci-test,https://github.com/rupadas/cyber,https://github.com/rupadas/native-json-editor").split(",")
-        json.dump([i for i in repo_list], sys.stdout)
+        repo_list = str("https://github.com/knqyf263/trivy-ci-test,https://github.com/rupadas/kodo").split(",")
+        json.dump(repo_list, sys.stdout)
   
   - name: trivy-single
     inputs:
@@ -33,5 +33,5 @@ spec:
       - name: repo
     container:
       image: aquasec/trivy:latest
-      command: [trivy, repo]
+      command: [trivy, repo, --scanners, "vuln,config"]
       args: ["{{inputs.parameters.repo}}"]
