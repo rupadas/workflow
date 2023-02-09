@@ -16,7 +16,13 @@ spec:
           - name: repo
             value: "{{item}}"
         withParam: "{{steps.generate.outputs.result}}"
-
+    - - name: trivy-output
+        template: trivy-output
+        arguments:
+          parameters:
+          - name: results
+            value: "{{steps.trivy-check.outputs.parameters}}"
+        
   - name: gen-repo-list
     script:
       image: python:alpine3.6
@@ -33,5 +39,19 @@ spec:
       - name: repo
     container:
       image: aquasec/trivy:latest
-      command: [trivy, repo, --scanners, "vuln,config"]
+      command: [trivy, repo, --scanners, "vuln,config","-f", "table","-o","result.txt"]
       args: ["{{inputs.parameters.repo}}"]
+    outputs:
+      parameters:
+        - name: repo
+          valueFrom:
+            path: /result.txt
+
+  - name: trivy-output
+    inputs:
+      parameters:
+        - name: results
+    script:
+      image: alpine:latest
+      command: [sh, -c]
+      args: ["echo {{inputs.parameters.results}}"]
