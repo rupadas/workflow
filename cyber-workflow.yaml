@@ -6,7 +6,7 @@ spec:
   entrypoint: cyber-trivy-example
   templates:
   - name: cyber-trivy-example
-    steps:
+    dag:
     - - name: generate
         template: gen-repo-list
     - - name: trivy-check
@@ -15,13 +15,13 @@ spec:
           parameters:
           - name: repo
             value: "{{item}}"
-        withParam: "{{steps.generate.outputs.result}}"
+        withParam: "{{dag.generate.outputs.result}}"
     - - name: trivy-output
         template: trivy-output
         arguments:
           parameters:
           - name: results
-            value: "{{steps.trivy-check.outputs.parameters}}"
+            value: "{{dag.trivy-check.outputs.parameters}}"
         
   - name: gen-repo-list
     script:

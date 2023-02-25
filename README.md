@@ -11,7 +11,7 @@ Installing argo into agro name space
 ```
 kubectl apply -n argo -f https://github.com/argoproj/argo-workflows/releases/download/v3.4.4/install.yaml
 ```
-Patching this to run it in local server without cer file
+Patching this to run it in local server without cer file, for newer version it's not needed
 ```
 kubectl patch deployment \
   argo-server \

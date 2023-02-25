@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cyber-work
+spec:
+  project: default
+  source:
+    repoURL: <git-repository-url>
+    targetRevision: HEAD
+    path: .
+  destination:
+    server: https://github.com/rupadas/workflow
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
